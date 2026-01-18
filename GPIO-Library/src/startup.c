@@ -2,6 +2,9 @@
 
 #define SYSTEM_SYSCLK_CONF_REG (0x0058 + 0x600C0000)
 #define PLL_CLK 1
+
+#define RTC_CNTL_SWD_WPROTECT_REG (0x00B0 + 0x60008000)
+#define RTC_CNTL_SWD_
 extern int main(void);
 
 void init_clk(void) {

@@ -1,0 +1,11 @@
+1. Wo sehe ich exakt im reference manual welche Adresse IRAM, welche Adresse DRAM und welche Adresse Flash ist und wie schreibe ich 
+  das ins Linkerskript?
+
+2. Wann muss ich den Stack-Pointer im Linkerskript und startup-code setzen bzw. An eine gewisse Adresse laden
+
+3. Warum werden die Watchdogtimer deaktiviert, braucht man die nicht später wieder für FreeRTOS?
+
+4. Was ist mit diesem vector table, woher weiß die MCU an welcher Adresse seine Interrupts sind?
+
+5. Was genau ist hardware gecodet im ROM für den Bootprozess?
+
