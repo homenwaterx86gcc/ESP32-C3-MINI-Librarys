@@ -9,11 +9,11 @@ all: firmware.bin
 firmware.bin: firmware.elf
 	esptool --chip esp32c3 elf2image firmware.elf
 
-firmware.elf:gpio.o startup.o main.o
-	$(COMPILER) gpio.o startup.o main.o $(LFLAGS) -o firmware.elf
+firmware.elf:uart.o startup.o main.o
+	$(COMPILER) uart.o startup.o main.o $(LFLAGS) -o firmware.elf
 
-gpio.o: gpio.c
-	$(COMPILER) -c $(CFLAGS) gpio.c -o gpio.o
+uart.o: uart.c
+	$(COMPILER) -c $(CFLAGS) uart.c -o uart.o
 
 startup.o: startup.c 
 	$(COMPILER) -c $(CFLAGS) startup.c -o startup.o
@@ -22,9 +22,10 @@ main.o: main.c
 	$(COMPILER) -c $(CFLAGS) main.c -o main.o
 
 clean:
-	rm gpio.o startup.o main.o firmware.elf firmware.bin
+	rm uart.o startup.o main.o firmware.elf firmware.bin
 
 
 flash:
-	esptool --chip esp32c3 --port /dev/ttyUSB0 --baud 921600 write-flash 0x0 firmware.bin
+	esptool --chip esp32c3 --no-stub load_ram firmware.bin
+	picocom /dev/ttyUSB0 -b 115200
 
